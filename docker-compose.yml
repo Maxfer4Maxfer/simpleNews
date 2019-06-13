@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    command: --sql_mode="" --default-authentication-plugin=mysql_native_password
+             --sql_mode="" --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tasks
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - back_net
+
+  nats:
+    container_name: nats
+    image: nats:1.4.1
+    networks:
+      - back_net
+
+  newsrepo:
+    build:
+      context: .
+      dockerfile: Dockerfile_newsrepo
+    image: newsrepo
+    container_name: newsrepo
+    depends_on:
+      - nats
+      - mysql
+    networks:
+      - back_net
+
+  newssvc:
+    build:
+      context: .
+      dockerfile: Dockerfile_newssvc
+    image: newssvc
+    container_name: newssvc
+    ports:
+      - '80:8080'
+    depends_on:
+      - nats
+      - newsrepo
+    networks:
+      - front_net
+      - back_net
+
+
+networks:
+  front_net:
+  back_net:
+
+volumes:
+  mysql_data:

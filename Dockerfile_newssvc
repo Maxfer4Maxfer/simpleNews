@@ -1,0 +1,16 @@
+FROM golang:alpine
+FROM golang:alpine
+
+EXPOSE 8080
+
+ADD ./ /simpleNews
+WORKDIR /simpleNews
+
+
+RUN apk add git
+RUN go mod download
+RUN go install -v ./cmd/newssvc
+
+ENTRYPOINT ["newssvc"]
+
+

@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+package pb;
+
+message News {
+  string uuid = 1;
+  string title = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message NewsResponce {
+  News news = 1;
+  string err = 2;
+}
+
+message SaveNewsResponce {
+  string err = 1;
+}
+
+message AllNewsResponce {
+  repeated News news = 1;
+  string err = 2;
+}
+
+message DeleteAllNewsResponce {
+  string err = 1;
+}
+
