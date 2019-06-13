@@ -17,17 +17,17 @@ curl -X POST http://<simpleNews_IP>/news
 
 Show information about a particular news
 ```bash
-curl  -X GET http://<simpleNews_IP>/news/{news_id}
+curl -X GET http://<simpleNews_IP>/news/{news_id}
 ```
 
 Show all news
 ```bash
-curl  -X GET http://<simpleNews_IP>/news
+curl -X GET http://<simpleNews_IP>/news
 ```
 
 Delete all news
 ```bash
-curl  -X DELETE http://<simpleNews_IP>/news/
+curl -X DELETE http://<simpleNews_IP>/news/
 ```
 
 ## Donations

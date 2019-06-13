@@ -6,7 +6,7 @@ import (
 	"simpleNews/pkg/config"
 	server "simpleNews/pkg/server/nats"
 	"simpleNews/pkg/service"
-	storage "simpleNews/pkg/storage/inmem"
+	storage "simpleNews/pkg/storage/gorm"
 )
 
 func main() {
